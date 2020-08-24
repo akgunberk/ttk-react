@@ -1,0 +1,12 @@
+export enum USER {
+    TYPE = "TYPE",
+    ENVIRONMENT = "ENVIRONMENT",
+    COUNTRY = "COUNTRY",
+    JOB = "JOB",
+    DEAL = "DEAL",
+    PASSWORD = "PASSWORD",
+    BUSINESSMODEL = "BUSINESSMODEL",
+    DATE = "DATE"
+}
+
+export const DEFAULT_USER = "DEFAULT";
