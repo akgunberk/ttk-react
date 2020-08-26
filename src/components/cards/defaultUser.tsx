@@ -2,7 +2,7 @@ import React from "react";
 import { Card, Image } from "semantic-ui-react";
 import pokemon from "images/pokemon-destek.png";
 import { useSelector } from "react-redux";
-import { getUserElements, getCardElements } from "store/selectors";
+import { getUserElements, getCardElements } from "core/store/selectors";
 import ClipBoardButton from "components/container/withClipboard";
 
 const DefaultUser: React.FC = () => {

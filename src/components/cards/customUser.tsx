@@ -1,8 +1,8 @@
 import React from "react";
-import { Card, Image, Flag } from "semantic-ui-react";
+import { Card, Image, Flag, Icon } from "semantic-ui-react";
 import ClipBoardButton from "components/container/withClipboard";
 import { useSelector } from "react-redux";
-import { getUserElements, getCardElements } from "store/selectors";
+import { getUserElements, getCardElements } from "../../core/store/selectors";
 
 const images = require.context("images", true);
 
@@ -53,6 +53,7 @@ const CustomUser = () => {
           <ClipBoardButton name="Token" copy={accessToken} />
         ) : null}
       </Card.Content>
+      <Icon name="user" />
     </Card>
   );
 };

@@ -12,9 +12,9 @@ import "react-dates/lib/css/_datepicker.css";
 import WithSelect from "components/container/withSelect";
 import WithButtonGroup from "components/container/withButtonGroup";
 import { useSelector, useDispatch } from "react-redux";
-import { getUserElements } from "store/selectors";
+import { getUserElements } from "core/store/selectors";
 import moment from "moment";
-import { USER } from "store/actionTypes";
+import { USER } from "core/store/actionTypes";
 
 const UserForm: React.FC = () => {
   const user = useSelector(getUserElements);

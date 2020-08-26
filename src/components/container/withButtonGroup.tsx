@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { Grid, Button } from "semantic-ui-react";
 import { connect, useSelector } from "react-redux";
-import { dispatchDeal } from "store/actions";
-import { getUserElements } from "store/selectors";
+import { dispatchDeal } from "core/store/actions";
+import { getUserElements } from "core/store/selectors";
 
 type PropTypes = { left: string; right: string; dispatchDeal: any };
 

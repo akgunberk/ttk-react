@@ -1,4 +1,4 @@
-import { CardElement } from "../../assets/propTypes";
+import { CardElement } from "../../../assets/propTypes";
 import { DEFAULT_USER } from "../actionTypes";
 
 const initialState: CardElement = {

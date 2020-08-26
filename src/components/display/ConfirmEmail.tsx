@@ -1,12 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { confirmUser } from "api/db-actions";
+import { ConfirmUser, app } from "core/db";
 import { Button, Form } from "semantic-ui-react";
 import { useHistory } from "react-router";
 import WithMessage from "components/container/withMessage";
-import {
-  Stitch,
-  UserPasswordAuthProviderClient,
-} from "mongodb-stitch-browser-sdk";
 
 export const Confirmation: React.FC = () => {
   const [error, setError] = useState(false);
@@ -14,14 +10,13 @@ export const Confirmation: React.FC = () => {
   const history = useHistory();
   const resendMail = async () => {
     console.log(mail);
-    Stitch.defaultAppClient.auth
-      .getProviderClient(UserPasswordAuthProviderClient.factory)
+    await app.emailPasswordAuth
       .resendConfirmationEmail(mail)
       .catch(() => console.log("error"));
   };
   useEffect(() => {
     try {
-      confirmUser()
+      ConfirmUser()
         .then((res) => history.push("/login"))
         .catch(() => setError(true));
     } catch (error) {

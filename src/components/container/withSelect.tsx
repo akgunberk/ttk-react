@@ -1,6 +1,6 @@
 import React from "react";
 import { Grid, Dropdown, DropdownItemProps } from "semantic-ui-react";
-import { dispatchSelectable } from "store/actions";
+import { dispatchSelectable } from "core/store/actions";
 import { connect } from "react-redux";
 
 type PropTypes = {

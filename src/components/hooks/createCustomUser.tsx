@@ -1,9 +1,9 @@
 import { useState } from "react";
-import store from "store/index";
-import { dispatchDefaultUser } from "store/actions";
-import { db, client } from "api/db-actions";
+import store from "core/store/index";
+import { dispatchDefaultUser } from "core/store/actions";
+import { collection, app } from "core/initApp";
 import { useSelector } from "react-redux";
-import { getUserElements } from "store/selectors";
+import { getUserElements } from "core/store/selectors";
 
 interface contextType {
   jobDate?: string; // example "2020-03-06 14:00"
@@ -38,7 +38,7 @@ export function CreateCustomUser(environment: string) {
   const url = `https://ttk.armut.${environment}/operate`;
 
   const user = useSelector(getUserElements);
-  const [isLoading, setState] = useState(false);
+  const [isLoading, setLoading] = useState(false);
 
   const loadCustomUser = () => {
     /* if (user.country) {
@@ -78,7 +78,7 @@ export function CreateCustomUser(environment: string) {
       console.log(payload);
     }
 
-    setState(true);
+    setLoading(true);
     fetch(url, {
       method: "POST",
       body: JSON.stringify(payload),
@@ -98,9 +98,9 @@ export function CreateCustomUser(environment: string) {
               name: first_name,
             })
           );
-          db.collection("test")
+          collection
             .insertOne({
-              user_id: client.auth.user?.id,
+              user_id: app.currentUser?.id,
               id: user_id,
               email,
               password,
@@ -116,7 +116,7 @@ export function CreateCustomUser(environment: string) {
         }
       })
       .finally(() => {
-        setState(false);
+        setLoading(false);
       });
   };
   return [isLoading, loadCustomUser] as const;

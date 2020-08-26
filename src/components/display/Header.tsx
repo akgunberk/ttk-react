@@ -3,7 +3,7 @@ import WithSelect from "components/container/withSelect";
 import { environmentOptions, userTypeOptions } from "assets/selectableOptions";
 import { Message } from "semantic-ui-react";
 import { useSelector } from "react-redux";
-import { getUserElements } from "store/selectors";
+import { getUserElements } from "core/store/selectors";
 
 const Header: React.FC = () => {
   const user = useSelector(getUserElements);

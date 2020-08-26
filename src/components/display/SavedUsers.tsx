@@ -1,6 +1,6 @@
 import React from "react";
 import WithCard from "components/container/withCard";
-import { fetchUsers, deleteUser } from "api/db-actions";
+import { getUsers, deleteUser } from "core/db/actions";
 import { Button, Dimmer, Loader, Grid } from "semantic-ui-react";
 import { history } from "App";
 import { CardElement } from "assets/propTypes";
@@ -15,7 +15,7 @@ export default class Saved extends React.Component<Props> {
     loading: true,
   };
   async componentDidMount() {
-    const users = await fetchUsers();
+    const users = await getUsers();
     this.setState({ users, loading: false });
   }
   render() {

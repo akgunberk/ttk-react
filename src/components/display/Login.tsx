@@ -8,12 +8,12 @@ import {
   Dimmer,
   Loader,
 } from "semantic-ui-react";
-import { logDB, SignUp } from "api/db-actions";
+import { LogIn, SignUp } from "core/db";
 import WithMessage from "../container/withMessage";
 import Statistics from "components/container/statistics";
 import { useHistory } from "react-router";
 import { reducer } from "components/hooks/loginReducer";
-import { UserContext } from "store/ContextApi/UserContext";
+import { UserContext } from "core/store/ContextApi/Context";
 import WithModal from "components/container/withModal";
 
 export const Login: React.FC = () => {
@@ -30,7 +30,7 @@ export const Login: React.FC = () => {
 
   const handleLogin = async () => {
     dispatch({ type: "active", payload: true });
-    await logDB(state.email, state.password).then((res) => {
+    await LogIn(state.email, state.password).then((res) => {
       if (res.success) {
         setLogged(true);
         history.push("/");
@@ -107,6 +107,7 @@ export const Login: React.FC = () => {
               />
             </Form>
             <Button
+              type="submit"
               content="Login"
               icon="sign in"
               primary

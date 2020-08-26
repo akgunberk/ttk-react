@@ -4,10 +4,10 @@ import CustomUser from "../cards/customUser";
 import UserForm from "components/forms/userForm";
 import { connect, useSelector, useDispatch } from "react-redux";
 import Header from "./Header";
-import { getUserElements } from "store/selectors";
+import { getUserElements } from "core/store/selectors";
 import DefaultUser from "../cards/defaultUser";
 import Submit from "components/display/Submit";
-import { USER } from "store/actionTypes";
+import { USER } from "core/store/actionTypes";
 
 const Landing = () => {
   const user = useSelector(getUserElements);

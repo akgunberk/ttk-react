@@ -1,4 +1,4 @@
-import { UserElement } from "../../assets/propTypes";
+import { UserElement } from "../../../assets/propTypes";
 import { USER } from '../actionTypes';
 
 const initialState: UserElement = {
