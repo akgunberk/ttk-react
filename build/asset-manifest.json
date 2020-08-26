@@ -1,0 +1,32 @@
+{
+  "files": {
+    "main.css": "/static/css/main.265bfc85.chunk.css",
+    "main.js": "/static/js/main.be3d655f.chunk.js",
+    "main.js.map": "/static/js/main.be3d655f.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.a57ed013.js",
+    "runtime-main.js.map": "/static/js/runtime-main.a57ed013.js.map",
+    "static/css/2.96745999.chunk.css": "/static/css/2.96745999.chunk.css",
+    "static/js/2.52e4ea4a.chunk.js": "/static/js/2.52e4ea4a.chunk.js",
+    "static/js/2.52e4ea4a.chunk.js.map": "/static/js/2.52e4ea4a.chunk.js.map",
+    "index.html": "/index.html",
+    "precache-manifest.323f1899157f9d3934369f597bb46307.js": "/precache-manifest.323f1899157f9d3934369f597bb46307.js",
+    "service-worker.js": "/service-worker.js",
+    "static/css/2.96745999.chunk.css.map": "/static/css/2.96745999.chunk.css.map",
+    "static/css/main.265bfc85.chunk.css.map": "/static/css/main.265bfc85.chunk.css.map",
+    "static/js/2.52e4ea4a.chunk.js.LICENSE.txt": "/static/js/2.52e4ea4a.chunk.js.LICENSE.txt",
+    "static/media/eg.png": "/static/media/eg.ee87944d.png",
+    "static/media/pokemon-destek.png": "/static/media/pokemon-destek.eb7bf3da.png",
+    "static/media/ro.png": "/static/media/ro.7c6628a2.png",
+    "static/media/sa.png": "/static/media/sa.bb924894.png",
+    "static/media/tr.png": "/static/media/tr.046e91f7.png",
+    "static/media/uk.png": "/static/media/uk.b702632c.png",
+    "static/media/us.png": "/static/media/us.2918610d.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.a57ed013.js",
+    "static/css/2.96745999.chunk.css",
+    "static/js/2.52e4ea4a.chunk.js",
+    "static/css/main.265bfc85.chunk.css",
+    "static/js/main.be3d655f.chunk.js"
+  ]
+}
