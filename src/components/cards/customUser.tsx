@@ -7,6 +7,7 @@ import { getUserElements, getCardElements } from "../../core/store/selectors";
 const images = require.context("images", true);
 
 const CustomUser = () => {
+  //creates custom user
   const user = useSelector(getUserElements);
   const { userId, email, password, accessToken } = useSelector(getCardElements);
   return (
