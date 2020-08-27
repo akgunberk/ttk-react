@@ -1,7 +1,7 @@
 import { useState } from "react";
 import store from "core/store/index";
 import { dispatchDefaultUser } from "core/store/actions";
-import { app, collection } from "core/initApp";
+import { Application, collection } from "core/initApp";
 
 const payload = {
   operation: "CREATEUSER",
@@ -37,7 +37,7 @@ export function CreateDefaultUser(environment: string) {
             })
           );
           collection.insertOne({
-            user_id: app.currentUser?.id,
+            user_id: Application.currentUser?.id,
             id: user_id,
             environment,
             email,

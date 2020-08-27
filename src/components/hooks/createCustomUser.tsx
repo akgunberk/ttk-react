@@ -1,7 +1,7 @@
 import { useState } from "react";
 import store from "core/store/index";
 import { dispatchDefaultUser } from "core/store/actions";
-import { collection, app } from "core/initApp";
+import { collection, Application } from "core/initApp";
 import { useSelector } from "react-redux";
 import { getUserElements } from "core/store/selectors";
 
@@ -100,7 +100,7 @@ export function CreateCustomUser(environment: string) {
           );
           collection
             .insertOne({
-              user_id: app.currentUser?.id,
+              user_id: Application.currentUser?.id,
               id: user_id,
               email,
               password,
