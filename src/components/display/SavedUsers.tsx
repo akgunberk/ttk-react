@@ -1,6 +1,6 @@
 import React from "react";
 import WithCard from "components/container/withCard";
-import { getUsers, deleteUser } from "core/db/actions";
+import { getAllUsers, deleteUser } from "core/db/services";
 import { Button, Dimmer, Loader, Grid } from "semantic-ui-react";
 import { history } from "App";
 import { CardElement } from "assets/propTypes";
@@ -15,7 +15,7 @@ export default class Saved extends React.Component<Props> {
     loading: true,
   };
   async componentDidMount() {
-    const users = await getUsers();
+    const users = await getAllUsers();
     this.setState({ users, loading: false });
   }
   render() {
@@ -39,7 +39,14 @@ export default class Saved extends React.Component<Props> {
         ) : this.state.users.filter(
             (user) => user.environment === this.props.env
           ).length ? (
-          <Grid columns="equal" style={{ margin: "0 15%" }}>
+          <Grid
+            container
+            stackable
+            stretched
+            columns="4"
+            style={{ margin: "auto auto" }}
+            centered
+          >
             <Grid.Row centered verticalAlign="middle">
               <h1>{this.props.env}</h1>
             </Grid.Row>

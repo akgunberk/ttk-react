@@ -10,10 +10,10 @@ export const collection = Mongo.db(mongodb.database).collection(
   mongodb.collection
 );
 
-export async function LoginWithGoogle(dispatch) {
+export async function LoginWithGoogle(setAuthState) {
   const credentials = Realm.Credentials.google(RedirectUri);
   Application.logIn(credentials).then((user) => {
-    dispatch({ type: "userId", payload: user.id });
+    setAuthState({ isLoggedIn: true, currentUser: user });
     console.log("signed in successfully with id:" + user.id);
   });
 }

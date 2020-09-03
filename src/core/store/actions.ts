@@ -15,7 +15,7 @@ export const dispatchSelectable = (type: string, payload: any) => ({
     payload
 })
 
-export const dispatchDefaultUser = (payload: { user_id: string, email: string, password: string, accessToken: string, name: string }) => (
+export const dispatchDefaultUser = (payload: { user_id: string, email: string, password: string, accessToken: string, name: string, imageId: number }) => (
     {
         type: DEFAULT_USER,
         payload

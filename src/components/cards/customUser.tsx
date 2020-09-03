@@ -19,7 +19,6 @@ const CustomUser = () => {
         label={
           user.environment !== ""
             ? {
-                as: "a",
                 color: user.environment === "Test" ? "red" : "blue",
                 content: user.environment === "Test" ? "TEST" : "STAGE",
                 ribbon: true,

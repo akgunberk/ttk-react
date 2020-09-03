@@ -6,6 +6,7 @@ export interface CardElement {
     environment: string,
     country?: any,
     name?: string
+    imageId?: number
 }
 
 export interface UserElement {

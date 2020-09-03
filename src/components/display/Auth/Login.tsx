@@ -1,30 +1,38 @@
-import React, { useReducer, useEffect } from "react";
-import { Grid, Dimmer, Loader, Button } from "semantic-ui-react";
+import React, { useEffect, useContext } from "react";
+import { Grid, Button, Header, Icon } from "semantic-ui-react";
 import Statistics from "components/container/statistics";
-import { reducer, AppState } from "components/hooks/loginReducer";
-import { LoginWithGoogle } from "core/db";
-import { useHistory } from "react-router";
+import { LoginWithGoogle } from "core/initApp";
+import { UserContext } from "core/store/ContextApi/Context";
+import { history } from "App";
 
 export const Login: React.FC<any> = () => {
   // eslint-disable-next-line
-  const [state, dispatch] = useReducer(reducer, AppState);
-  let history = useHistory();
+  let User = useContext(UserContext);
+
   useEffect(() => {
-    if (state.userId !== "") {
+    if (User.isLoggedIn) {
       history.push("/");
     }
     // eslint-disable-next-line
-  }, [state.userId]);
+  }, [User.isLoggedIn]);
 
   return (
     <React.Fragment>
-      <Dimmer active={state.active}>
-        <Loader />
-      </Dimmer>
-
       <Grid columns={1} relaxed="very" stackable>
         <Grid.Column>
-          <Button onClick={() => LoginWithGoogle(dispatch)}>Login</Button>
+          <Header as="h1" icon>
+            <Icon name="briefcase" />
+            Armut Test Tool Kit
+            <Header.Subheader>Manage your test users</Header.Subheader>
+            <Header.Content>
+              <Button
+                style={{ marginTop: "20px" }}
+                onClick={() => LoginWithGoogle(User.actions.setAuthState)}
+              >
+                Login
+              </Button>
+            </Header.Content>
+          </Header>
         </Grid.Column>
       </Grid>
 

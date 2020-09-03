@@ -4,36 +4,12 @@ import { dispatchDefaultUser } from "core/store/actions";
 import { collection, Application } from "core/initApp";
 import { useSelector } from "react-redux";
 import { getUserElements } from "core/store/selectors";
-
-interface contextType {
-  jobDate?: string; // example "2020-03-06 14:00"
-  businessModel?: number;
-  serviceId?: number;
-  proBalance?: number;
-  quoteId?: number;
-  countryId?: number;
-}
-
-interface jobContextType {
-  operation?: string;
-  commands?: Array<string | undefined>;
-  commandContext?: contextType;
-  proTestContext?: {};
-}
-
-const payload: {
-  operation: string;
-  commands: Array<string>;
-  commandContext: contextType;
-  jobTestContext: jobContextType;
-} = {
-  operation: "CREATEUSER",
-  commands: ["WITHPHONECONFIRMATION", "WITHPASSWORD"],
-  commandContext: {},
-  jobTestContext: {},
-};
+import { DefaultPayload } from "./shared";
+import { Payload, With, Create } from "./models";
 
 export function CreateCustomUser(environment: string) {
+  const payload: Payload = JSON.parse(JSON.stringify(DefaultPayload));
+
   process.env["NODE_TLS_REJECT_UNAUTHORIZED"] = "0"; // to prevent SSL
   const url = `https://ttk.armut.${environment}/operate`;
 
@@ -41,42 +17,45 @@ export function CreateCustomUser(environment: string) {
   const [isLoading, setLoading] = useState(false);
 
   const loadCustomUser = () => {
-    /* if (user.country) {
-      payload.commands.push("WITHCOUNTRYID");
-      payload.commandContext["countryId"] = user.country;
+    /*  if (user.country) {
+      payload.commands?.push(With.COUNTRY);
+      payload.commandContext = {
+        ...payload.commandContext,
+        countryId: user.country,
+      };
     } */
     if (user.job) {
-      payload.commands.push("WITHJOB");
+      payload.commands?.push(With.JOB);
       payload.jobTestContext = {
-        operation: "CREATEJOB",
-        commands: ["WITHSERVICEID"],
+        operation: Create.JOB,
+        commands: [With.SERVICEID],
         commandContext: {
           serviceId: parseInt(user.service),
         },
       };
       if (user.date) {
-        payload.jobTestContext.commands?.push("WITHJOBDATE");
+        payload.jobTestContext.commands?.push(With.JOBDATE);
         payload.jobTestContext.commandContext = {
           ...payload.jobTestContext.commandContext,
           jobDate: user.date,
         };
       }
-      if (user.deal === 1) {
-        payload.jobTestContext.commands?.push("WITHDEAL");
+      if (user.deal) {
+        payload.jobTestContext.commands?.push(With.DEAL);
         payload.jobTestContext.commandContext = {
           ...payload.jobTestContext.commandContext,
           jobDate: user.date,
         };
         payload.jobTestContext.proTestContext = {
-          operation: ["CREATEPRO"],
-          commands: ["WITHCREDITCARD", "WITHBALANCE"],
+          operation: Create.PRO,
+          commands: [With.CREDITCARD, With.BALANCE],
           commandContext: { proBalance: 10000 },
         };
-      } else if (user.deal === 0) {
-        payload.jobTestContext.commands?.push("WITHQUOTES");
+      } else if (!user.deal) {
+        payload.jobTestContext.commands?.push(With.QUOTES);
       }
-      console.log(payload);
     }
+    console.log(payload);
 
     setLoading(true);
     fetch(url, {
@@ -89,6 +68,7 @@ export function CreateCustomUser(environment: string) {
         const { accessToken, password, model } = responseContext[0];
         const { user_id, email, first_name } = model;
         if (!error) {
+          let imageId = Math.floor(Math.random() * Math.floor(151));
           store.dispatch(
             dispatchDefaultUser({
               user_id,
@@ -96,6 +76,7 @@ export function CreateCustomUser(environment: string) {
               password,
               accessToken,
               name: first_name,
+              imageId,
             })
           );
           collection
@@ -106,6 +87,7 @@ export function CreateCustomUser(environment: string) {
               password,
               accessToken,
               first_name,
+              imageId,
             })
             .then((result) =>
               console.log(

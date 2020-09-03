@@ -14,11 +14,16 @@ export function CreateDefaultUser(environment: string) {
 
   const [isLoading, setState] = useState(false);
 
+  const controller = new AbortController();
+  const signal = controller.signal;
+
   const loadUser = () => {
     setState(true);
+    setTimeout(() => controller.abort(), 20000);
     fetch(url, {
       method: "POST",
       body: JSON.stringify(payload),
+      signal,
     })
       .then((res) => res.json())
       .then((user) => {
@@ -27,6 +32,7 @@ export function CreateDefaultUser(environment: string) {
         const { accessToken, password, model } = responseContext[0];
         const { user_id, email, first_name } = model;
         if (!error) {
+          let imageId = Math.floor(Math.random() * Math.floor(151));
           store.dispatch(
             dispatchDefaultUser({
               user_id,
@@ -34,6 +40,7 @@ export function CreateDefaultUser(environment: string) {
               password,
               accessToken,
               name: first_name,
+              imageId,
             })
           );
           collection.insertOne({
@@ -44,6 +51,7 @@ export function CreateDefaultUser(environment: string) {
             password,
             accessToken,
             name: first_name,
+            imageId,
           });
         }
       })

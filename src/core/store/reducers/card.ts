@@ -7,6 +7,7 @@ const initialState: CardElement = {
     password: "",
     id: "",
     accessToken: "",
+    imageId: undefined
 };
 
 type action = {

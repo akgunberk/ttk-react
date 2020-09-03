@@ -1,7 +1,6 @@
-import React, { useState, useReducer } from "react";
+import React, { useState } from "react";
 import { UserContext } from "core/store/ContextApi/Context";
-import { Application } from "core/db";
-import { reducer, AppState } from "./hooks/loginReducer";
+import { Application } from "core/initApp";
 
 export function AuthGuard(props: any) {
   const [authState, setAuthState] = useState({
@@ -9,11 +8,10 @@ export function AuthGuard(props: any) {
     currentUser: Application.currentUser,
   });
   // eslint-disable-next-line
-  const [state, dispatch] = useReducer(reducer, AppState);
 
   const handleLogout = () => {
     Application.currentUser?.logOut();
-    dispatch({ type: "userId", payload: "" });
+    setAuthState({ isLoggedIn: false, currentUser: null });
   };
 
   const authInfo = React.useMemo(() => {

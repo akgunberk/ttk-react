@@ -5,7 +5,7 @@ import { handleAuthRedirect } from "realm-web";
 const Redirection: React.FC = () => {
   useEffect(() => {
     handleAuthRedirect();
-  });
+  }, []);
 
   return (
     <Segment style={{ height: "100vh", width: "100vw" }}>

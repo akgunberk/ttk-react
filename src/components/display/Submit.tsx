@@ -1,9 +1,9 @@
 import React from "react";
 import { Button, Icon, Dimmer, Loader } from "semantic-ui-react";
-import { CreateDefaultUser } from "../hooks/createDefaultUser";
+import { CreateDefaultUser } from "../../services/createDefaultUser";
 import { useSelector } from "react-redux";
 import { getUserElements } from "core/store/selectors";
-import { CreateCustomUser } from "components/hooks/createCustomUser";
+import { CreateCustomUser } from "services/createCustomUser";
 
 const Submit: React.FC = () => {
   const user = useSelector(getUserElements);
