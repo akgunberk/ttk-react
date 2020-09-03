@@ -17,7 +17,6 @@ const WithSelect = (props: PropTypes) => {
       <Grid.Column textAlign="center" className="selectable">
         <Dropdown
           selection
-          clearable
           placeholder={`${props.name}`}
           defaultValue={props.defaultValue ? props.defaultValue : null}
           options={props.options}
