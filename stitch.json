@@ -1,0 +1,10 @@
+{
+  "app_id": "ttk-ui-cvkwt",
+  "name": "Armut TTK UI",
+  "security": {},
+  "hosting": {
+    "enabled": true
+  },
+  "location": "US-VA",
+  "deployment_model": "GLOBAL"
+}
