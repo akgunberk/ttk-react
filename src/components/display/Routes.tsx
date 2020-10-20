@@ -7,6 +7,7 @@ import Landing from "./Landing";
 import { UserContext } from "core/store/ContextApi/Context";
 
 const Routes: React.FC = () => {
+  
   return (
     <UserContext.Consumer>
       {(User) => (
@@ -14,7 +15,7 @@ const Routes: React.FC = () => {
           <Switch>
             <Route path="/login" component={Login} />
             <Route path="/redirect" component={Redirection} />
-            {!User.isLoggedIn && <Redirect push to="/login" />}
+            {!User.user && <Redirect push to="/login" />}
 
             <Route path="/test-user">
               <Saved env="Test" />

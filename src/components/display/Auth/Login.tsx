@@ -10,11 +10,11 @@ export const Login: React.FC<any> = () => {
   let User = useContext(UserContext);
 
   useEffect(() => {
-    if (User.isLoggedIn) {
+    if (User.user) {
       history.push("/");
     }
     // eslint-disable-next-line
-  }, [User.isLoggedIn]);
+  }, [User.user]);
 
   return (
     <React.Fragment>

@@ -1,8 +1,37 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { UserContext } from "core/store/ContextApi/Context";
 import { Application } from "core/initApp";
+import { User } from "realm-web";
 
 export function AuthGuard(props: any) {
+  const appRef = useRef(Application);
+
+  const [user, setAuthState] = useState<User<
+    Realm.DefaultFunctionsFactory,
+    any
+  > | null>(Application.currentUser);
+
+  useEffect(() => {
+    setAuthState(Application.currentUser);
+  }, [appRef.current.currentUser]);
+
+  const logOut = async () => {
+    if (Application.currentUser) {
+      await Application.currentUser?.logOut();
+      setAuthState(Application.currentUser);
+    }
+  };
+
+  return (
+    <UserContext.Provider value={{ user, actions: { logOut, setAuthState } }}>
+      {props.children}
+    </UserContext.Provider>
+  );
+}
+
+/* 
+export function AuthGuard(props: any) {
+   const appRef = useRef(Application);
   const [authState, setAuthState] = useState({
     isLoggedIn: Application.currentUser?.state === "active",
     currentUser: Application.currentUser,
@@ -29,4 +58,4 @@ export function AuthGuard(props: any) {
       {props.children}
     </UserContext.Provider>
   );
-}
+} */
